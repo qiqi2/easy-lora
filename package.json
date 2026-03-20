@@ -1,0 +1,61 @@
+{
+  "name": "easy-lora",
+  "version": "0.1.0",
+  "description": "消费级显卡 LLM 微调助手",
+  "main": "dist/main.js",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "cd .. && python -m easy_lora.server",
+    "dev:frontend": "vite",
+    "build": "tsc && vite build && electron-builder",
+    "build:win": "electron-builder --win",
+    "build:mac": "electron-builder --mac",
+    "build:linux": "electron-builder --linux",
+    "lint": "eslint src --ext .ts,.tsx",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^^18.2.0",
+    "react-router-dom": "^6.22.0",
+    "axios": "^1.6.7",
+    "zustand": "^4.5.0",
+    "recharts": "^2.12.0",
+    "react-dropzone": "^14.2.3",
+    "lucide-react": "^0.344.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.55",
+    "@types/react-dom": "^18.2.19",
+    "@vitejs/plugin-react": "^4.2.1",
+    "electron": "^28.2.0",
+    "electron-builder": "^24.9.1",
+    "typescript": "^5.3.3",
+    "vite": "^5.1.0",
+    "vite-plugin-electron": "^0.28.2",
+    "concurrently": "^8.2.2",
+    "tailwindcss": "^3.4.1",
+    "autoprefixer": "^10.4.17",
+    "postcss": "^8.4.35"
+  },
+  "build": {
+    "appId": "com.easylora.app",
+    "productName": "EasyLoRA",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "node_modules/**/*"
+    ],
+    "mac": {
+      "category": "public.app-category.developer-tools"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "linux": {
+      "target": "AppImage"
+    }
+  }
+}
